@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Folke.Core" Version="1.4.0.1" />

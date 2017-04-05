@@ -1,14 +1,16 @@
 ﻿using OperationNameGenerator.BusinessModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OperationNameGenerator.Services
 {
     public interface INounService
     {
-        Task<Noun> Create(Noun nound);
-        Task<Noun> Read(Noun nound);
-        Task<Noun> ReadRandom(Noun nound);
-        Task<Noun> Update(Noun nound);
-        Task Delete(Noun nound);
+        Task<Noun> CreateAsync(Noun nound);
+        Task<Noun> ReadAsync(Noun nound);
+        Task<IList<Noun>> ReadAllAsync();
+        Task<Noun> ReadRandomAsync(Noun nound);
+        Task<Noun> UpdateAsync(Noun nound);
+        Task DeleteAsync(Noun nound);
     }
 }

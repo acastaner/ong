@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using OperationNameGenerator.BusinessModels;
 using Folke.Elm;
 using Folke.Elm.Fluent;
+using System.Collections.Generic;
 
 namespace OperationNameGenerator.Services
 {
@@ -22,6 +23,12 @@ namespace OperationNameGenerator.Services
         public async Task DeleteAsync(Adjective adj)
         {
             await _session.DeleteAsync(adj);
+        }
+
+        public async Task<IList<Adjective>> ReadAllAsync()
+        {
+            IList<Adjective> adjList = await _session.SelectAllFrom<Adjective>().ToListAsync();
+            return adjList;
         }
 
         public async Task<Adjective> ReadAsync(Guid id)
