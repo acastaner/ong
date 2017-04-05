@@ -9,7 +9,6 @@ namespace OperationNameGenerator.Mappings
         {
             return new NounDto
             {
-                Id = noun.Id,
                 Value = noun.Value
             };
         }

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using OperationNameGenerator.BusinessModels;
 using Folke.Elm;
+using Folke.Elm.Fluent;
 
 namespace OperationNameGenerator.Services
 {
@@ -28,9 +29,14 @@ namespace OperationNameGenerator.Services
             return await _session.LoadAsync<Adjective>(id);
         }
 
-        public Task<Adjective> ReadRandomAsync()
+        public async Task<Adjective> ReadRandomAsync()
         {
-            throw new NotImplementedException();
+            var adjList = await _session.SelectAllFrom<Adjective>().ToListAsync();
+
+            int count = adjList.Count;
+            Random rnd = new Random();
+            int offset = rnd.Next(count);
+            return adjList[offset];
         }
 
         public async Task<Adjective> UpdateAsync(Adjective adj)
