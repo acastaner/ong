@@ -259,3 +259,18 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+# ONG
+
+/OperationNameGenerator/src/services/*.js
+/OperationNameGenerator/src/components/*.js
+/OperationNameGenerator/src/components/*/*.js
+/OperationNameGenerator/src/services/*.js
+/OperationNameGenerator/src/*.js
+/OperationNameGenerator/wwwroot/*.map
+/OperationNameGenerator/wwwroot/*.css
+/OperationNameGenerator/wwwroot/*.png
+/OperationNameGenerator/wwwroot/*.js
+/OperationNameGenerator/appsettings.Local.json
+/OperationNameGenerator/wwwroot/.vscode
+/OperationNameGenerator/.vscode

@@ -1,0 +1,14 @@
+{
+  "name": "operation-name-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "webpack",
+    "build": "webpack",
+    "watch": "webpack -w"
+  }
+,
+  "author": "",
+  "license": "ISC"
+}
