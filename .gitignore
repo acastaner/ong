@@ -271,6 +271,6 @@ __pycache__/
 /OperationNameGenerator/wwwroot/*.css
 /OperationNameGenerator/wwwroot/*.png
 /OperationNameGenerator/wwwroot/*.js
-/OperationNameGenerator/appsettings.Local.json
+/OperationNameGenerator/appsettings.Development.json
 /OperationNameGenerator/wwwroot/.vscode
 /OperationNameGenerator/.vscode
