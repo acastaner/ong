@@ -42,7 +42,7 @@ namespace OperationNameGenerator.Services
 
             Random rnd = new Random();
             int offset = rnd.Next(count);
-            //Adjective adj = await _session.SelectAllFrom<Adjective>().ToList().Skip(offset).Take(1);
+            Adjective adj = await _session.SelectAllFrom<Adjective>().Skip(offset).Take(1).ToListAsync();
             //Adjective zob = await _session.SelectAllFrom<Adjective>().ToListAsync().T
             return adj;
         }
