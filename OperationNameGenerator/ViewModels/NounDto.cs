@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OperationNameGenerator.ViewModels
+﻿namespace OperationNameGenerator.ViewModels
 {
     public class NounDto
     {
