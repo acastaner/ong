@@ -1,5 +1,9 @@
 import * as enums from "./enums";
 
+export interface AdjectiveDto {
+    value?: string;
+}
+
 export interface Login {
     email: string;
 

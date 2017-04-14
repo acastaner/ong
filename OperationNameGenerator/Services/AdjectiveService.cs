@@ -38,13 +38,14 @@ namespace OperationNameGenerator.Services
 
         public async Task<Adjective> ReadRandomAsync()
         {
+            throw new NotImplementedException();
             int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
 
             Random rnd = new Random();
             int offset = rnd.Next(count);
-            Adjective adj = await _session.SelectAllFrom<Adjective>().Skip(offset).Take(1).ToListAsync();
+            //Adjective adj = await _session.Select<Adjective>().Limit(offset, 1).ToListAsync();
             //Adjective zob = await _session.SelectAllFrom<Adjective>().ToListAsync().T
-            return adj;
+            //return adj;
         }
 
         public async Task<Adjective> UpdateAsync(Adjective adj)

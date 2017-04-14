@@ -25,7 +25,7 @@ namespace OperationNameGenerator
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.Local.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -82,6 +82,5 @@ namespace OperationNameGenerator
             typeScript.WriteAssembly(assembly, true);
             typeScript.WriteToFiles("src/services");
         }
-
     }
 }
