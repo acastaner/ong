@@ -36,6 +36,8 @@ namespace OperationNameGenerator
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOperationNameGeneratorServices();
+
+            services.AddSingleton<IConfiguration>(provider => Configuration);
             services.AddFolkeCore<MySqlDriver>(options =>
             {
                 options.ConnectionString = Configuration["Data:ConnectionString"];
@@ -43,6 +45,7 @@ namespace OperationNameGenerator
 
             // Add framework services.
             services.AddMvc();
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,18 +58,17 @@ namespace OperationNameGenerator
                 options.AdministratorPassword = Configuration["Data:DefaultAdministratorPassword"];
             });
 
-            if (env.IsDevelopment())
-            {
-                CreateTypeScriptServices(applicationPartManager);
-            }
-
             // Tells ORM to update Schema
             connection.UpdateSchema(typeof(Adjective).GetTypeInfo().Assembly);
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
             app.UseMvc();
+
+            if (env.IsDevelopment())
+            {
+                CreateTypeScriptServices(applicationPartManager);
+            }
         }
 
         private static void CreateTypeScriptServices(ApplicationPartManager applicationPartManager)

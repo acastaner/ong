@@ -3,7 +3,6 @@ import * as services from './services/services';
 import * as ko from 'knockout';
 import * as defaultApp from 'folke-default-application';
 
-//import { IdentityResetViewModel, IdentityLoginViewModel, IdentityRegisterViewModel } from 'folke-identity';
 import * as identity from 'folke-identity';
 
 import { HomeViewModel } from './components/home';
@@ -19,5 +18,6 @@ ko.components.register('about', { viewModel: HomeViewModel, template: require('.
 
 folke.addRoute('', 'home');
 folke.addRoute('about', 'about');
+//folke.addRoute('login', 'identity-login');
 
 folke.start();
