@@ -18,6 +18,5 @@ ko.components.register('about', { viewModel: HomeViewModel, template: require('.
 
 folke.addRoute('', 'home');
 folke.addRoute('about', 'about');
-//folke.addRoute('login', 'identity-login');
 
 folke.start();
