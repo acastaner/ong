@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using OperationNameGenerator.BusinessModels;
 using Folke.Elm;
 using System.Collections.Generic;
+using Folke.Elm.Fluent;
 
 namespace OperationNameGenerator.Services
 {
@@ -35,9 +36,13 @@ namespace OperationNameGenerator.Services
             return await _session.GetAsync<Noun>(noun.Id);
         }
 
-        public Task<Noun> ReadRandomAsync(Noun noun)
+        public async Task<Noun> ReadRandomAsync()
         {
-            throw new NotImplementedException();
+            int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
+            Random rnd = new Random();
+            int offset = rnd.Next(count);
+            Noun noun = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Id).Limit(offset, 1).FirstOrDefaultAsync();
+            return noun;
         }
 
         public async Task<Noun> UpdateAsync(Noun noun)

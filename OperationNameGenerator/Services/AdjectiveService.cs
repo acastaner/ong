@@ -39,11 +39,9 @@ namespace OperationNameGenerator.Services
         public async Task<Adjective> ReadRandomAsync()
         {
             int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
-
             Random rnd = new Random();
             int offset = rnd.Next(count);
             Adjective adj = await _session.SelectAllFrom<Adjective>().OrderBy(x => x.Id).Limit(offset, 1).FirstOrDefaultAsync();
-
             return adj;
         }
 
