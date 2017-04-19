@@ -9,7 +9,7 @@ import { HomeViewModel } from './components/home';
 import { AboutViewModel } from './components/about';
 
 declare function require(name: string): string;
-require('./site.less');
+require('./index.less');
 
 const { folke, defaultMenu } = defaultApp.register(services.services)
 
