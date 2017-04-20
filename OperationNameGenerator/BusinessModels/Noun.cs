@@ -12,10 +12,13 @@ namespace OperationNameGenerator.BusinessModels
         [Required]
         [MaxLength(100)]
         public string Value { get; set; }
+        public DateTime CreationDate {get;set;}
+        public DateTime ModificationDate {get;set;}
 
         public Noun()
         {
             Id = Guid.NewGuid();
+            CreationDate = DateTime.Now;
         }
     }
 }
