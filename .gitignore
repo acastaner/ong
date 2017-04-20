@@ -275,3 +275,4 @@ __pycache__/
 /OperationNameGenerator/wwwroot/.vscode
 /OperationNameGenerator/.vscode
 /OperationNameGenerator/appsettings.Local.json
+/.vscode
