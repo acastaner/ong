@@ -12,7 +12,7 @@
   "dependencies": {
     "folke-default-application": "^1.2.0",
     "folke-webpack-config": "^1.1.0",
-    "folke-identity": "^2.1.2"  },
+    "folke-identity": "^2.1.3"  },
   "devDependencies": {},
   "description": "A basic SPA application that concatenates two words - an adjective and a noun. Not very useful, this webapp is simply a code sample for the Folke project."
 }
