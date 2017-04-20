@@ -9,6 +9,7 @@ namespace OperationNameGenerator.Mappings
         {
             return new AdjectiveDto
             {
+                Id = adj.Id,
                 Value = adj.Value
             };
         }

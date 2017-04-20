@@ -1,6 +1,8 @@
 import * as enums from "./enums";
 
 export interface AdjectiveDto {
+    id: string;
+
     value?: string;
 }
 
