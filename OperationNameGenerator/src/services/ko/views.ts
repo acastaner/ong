@@ -4,6 +4,32 @@ import * as validation from "folke-ko-validation";
 import { loading } from "folke-ko-service-helpers";
 
 
+export class AdjectiveDto {
+    originalData: views.AdjectiveDto;
+    changed: KnockoutComputed<boolean>;
+    id: string;
+
+    value = ko.observable<string>();
+
+    constructor(data: views.AdjectiveDto) {
+        this.load(data);
+        this.originalData = data;
+        this.changed = ko.pureComputed(() =>
+            this.value() !== this.originalData.value
+        );
+    }
+    public toJs() {
+        return {
+            id: this.id,
+            value: this.value(),
+        };
+    }
+    public load(data: views.AdjectiveDto) {
+        this.id = data.id;
+        this.value(data.value);
+    }
+}
+
 export class LoginView {
     originalData: views.Login;
     changed: KnockoutComputed<boolean>;

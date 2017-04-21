@@ -37,16 +37,18 @@ namespace OperationNameGenerator.Controllers
                 return InternalServerError<AdjectiveDto>(new AdjectiveDto());
             }
         }
+        [Route("")]
         [Authorize]
         [HttpPost]
         public async Task<IHttpActionResult<AdjectiveDto>> Post([FromBody] AdjectiveDto adjDto)
         {
             try
             {
-                Adjective adj = await _adjService.ReadAsync(adjDto.Id);
-                adj.Value = adjDto.Value;
-                adj.ModificationDate = DateTime.Now;
-                await _adjService.UpdateAsync(adj);
+                Adjective adj = new Adjective {
+                                    Value = adjDto.Value,
+                                    ModificationDate = DateTime.Now
+                                    };
+                adj = await _adjService.CreateAsync(adj);
                 return Ok(adj.toAdjectiveDto());
             }
             catch

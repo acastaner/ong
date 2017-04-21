@@ -7,5 +7,9 @@ export class AdjectiveController {
     get(params: {id: string}) {
         return helpers.fetchSingle<views.AdjectiveDto>(`api/Adjective/${params.id}`, "GET", null);
     }
+
+    post(params: {adjDto: views.AdjectiveDto}) {
+        return helpers.fetchSingle<views.AdjectiveDto>("api/Adjective/", "POST", JSON.stringify(params.adjDto));
+    }
 }
 

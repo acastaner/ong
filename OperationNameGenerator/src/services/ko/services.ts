@@ -5,7 +5,7 @@ import * as roleGroup from "./role";
 import * as views from "../views";
 import * as koViews from "./views";
 export * from "../enums";
-export { AdjectiveDto, LoginResult, User, SendCode, AuthenticationDescription, UserLoginInfo, Role } from "../views";
+export { LoginResult, User, SendCode, AuthenticationDescription, UserLoginInfo, Role } from "../views";
 import { loading } from "folke-ko-service-helpers";
 export * from "./views";
 export { loading } from "folke-ko-service-helpers";
