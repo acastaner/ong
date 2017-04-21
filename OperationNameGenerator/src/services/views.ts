@@ -6,6 +6,24 @@ export interface AdjectiveDto {
     value?: string;
 }
 
+export interface NounDto {
+    id?: string;
+
+    value?: string;
+}
+
+export interface DataDto {
+    adjectives?: AdjectiveDto[];
+
+    nouns?: NounDto[];
+}
+
+export interface OpNameDto {
+    adjective?: string;
+
+    noun?: string;
+}
+
 export interface Login {
     email: string;
 

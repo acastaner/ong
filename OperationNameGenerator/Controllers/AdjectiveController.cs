@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace OperationNameGenerator.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Adjective")]
+    [Route("api/adjective")]
     public class AdjectiveController : TypedControllerBase
     {
         private IFolkeConnection _session;

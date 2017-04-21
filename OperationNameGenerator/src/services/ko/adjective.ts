@@ -6,11 +6,11 @@ import * as koViews from "./views";
 export class AdjectiveController {
 
     get(params: {id: string}) {
-        return helpers.fetchSingleT<views.AdjectiveDto, koViews.AdjectiveDto>(`api/Adjective/${params.id}`, "GET", view => new koViews.AdjectiveDto(view), null);
+        return helpers.fetchSingleT<views.AdjectiveDto, koViews.AdjectiveDto>(`api/adjective/${params.id}`, "GET", view => new koViews.AdjectiveDto(view), null);
     }
 
     post(params: {adjDto: koViews.AdjectiveDto}) {
-        return helpers.fetchSingleT<views.AdjectiveDto, koViews.AdjectiveDto>("api/Adjective/", "POST", view => new koViews.AdjectiveDto(view), JSON.stringify(params.adjDto.toJs()));
+        return helpers.fetchSingleT<views.AdjectiveDto, koViews.AdjectiveDto>("api/adjective/", "POST", view => new koViews.AdjectiveDto(view), JSON.stringify(params.adjDto.toJs()));
     }
 }
 

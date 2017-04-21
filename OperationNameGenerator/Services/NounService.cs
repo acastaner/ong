@@ -37,18 +37,26 @@ namespace OperationNameGenerator.Services
             return nounList;
         }
 
-        public async Task<Noun> ReadAsync(Noun noun)
+        public async Task<Noun> ReadAsync(Guid id)
         {
-            return await _session.GetAsync<Noun>(noun.Id);
+            return await _session.LoadAsync<Noun>(id);
         }
 
         public async Task<Noun> ReadRandomAsync()
         {
-            int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
-            Random rnd = new Random();
-            int offset = rnd.Next(count);
-            Noun noun = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Id).Limit(offset, 1).FirstOrDefaultAsync();
-            return noun;
+            try
+            {
+                int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
+                Random rnd = new Random();
+                int offset = rnd.Next(count);
+                Noun noun = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Id).Limit(offset, 1).FirstOrDefaultAsync();
+                return noun;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.InnerException.ToString());
+            }
+            
         }
 
         public async Task<Noun> UpdateAsync(Noun noun)

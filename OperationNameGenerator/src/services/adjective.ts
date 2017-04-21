@@ -5,11 +5,11 @@ import * as views from "./views";
 export class AdjectiveController {
 
     get(params: {id: string}) {
-        return helpers.fetchSingle<views.AdjectiveDto>(`api/Adjective/${params.id}`, "GET", null);
+        return helpers.fetchSingle<views.AdjectiveDto>(`api/adjective/${params.id}`, "GET", null);
     }
 
     post(params: {adjDto: views.AdjectiveDto}) {
-        return helpers.fetchSingle<views.AdjectiveDto>("api/Adjective/", "POST", JSON.stringify(params.adjDto));
+        return helpers.fetchSingle<views.AdjectiveDto>("api/adjective/", "POST", JSON.stringify(params.adjDto));
     }
 }
 

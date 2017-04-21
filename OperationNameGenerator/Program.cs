@@ -20,7 +20,7 @@ namespace OperationNameGenerator
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
+                
                 .UseUrls("http://0.0.0.0:" + config["Data:ListeningPort"])
                 .Build();
 

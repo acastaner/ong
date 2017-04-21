@@ -1,8 +1,8 @@
 ﻿<div class="row">
-    <div class="col-lg-12 text-center">
-        <h1>Weeping Witch</h1>
+    <div class="col-lg-12 text-center" data-bind="with: opname">
+        <h1 data-bind="text: adjective + ' ' + noun"></h1>
     </div>
     <div class="col-lg-12 text-center">
-        <p><button type="button" class="btn btn-default">Generate</button></p>
+        <p><button type="button" class="btn btn-default" data-bind="click: update">Generate</button></p>
     </div>
 </div>

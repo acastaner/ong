@@ -21,9 +21,9 @@ namespace OperationNameGenerator.Controllers
             _adjService = adjService;
             _nounService = nounService;
         }
-
+        [Route("")]
         [HttpGet]
-        public async Task<IHttpActionResult<DataDto>> Get()
+        public async Task<IHttpActionResult<DataDto>> GetAll()
         {
             try
             {
