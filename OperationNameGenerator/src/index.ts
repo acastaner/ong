@@ -41,8 +41,9 @@ ko.components.register('nouns', { viewModel: NounsViewModel, template: require('
 ko.components.register('noun-add', { viewModel: NounAddViewModel, template: require('./components/admin/noun-add.html') });
 
 folke.addRoute('', 'home');
+folke.addRoute('home', 'home');
 folke.addRoute('about', 'about');
-folke.addRoute('logout', parameters => identity.authentication.logout().then(() => location.assign('')));
+folke.addRoute('logout', parameters => identity.authentication.logout().then(() => location.assign('#home')));
 addLoggedRoute('admin', 'admin');
 addLoggedRoute('admin/adjectives', 'adjectives');
 addLoggedRoute('admin/nouns', 'nouns');
