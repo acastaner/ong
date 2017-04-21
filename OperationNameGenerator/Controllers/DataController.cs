@@ -8,7 +8,7 @@ using OperationNameGenerator.ViewModels;
 namespace OperationNameGenerator.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Data")]
+    [Route("api/data")]
     public class DataController : TypedControllerBase
     {
         private IFolkeConnection _session;
@@ -21,15 +21,16 @@ namespace OperationNameGenerator.Controllers
             _adjService = adjService;
             _nounService = nounService;
         }
-        [Route("")]
+        [Route("getall")]
         [HttpGet]
         public async Task<IHttpActionResult<DataDto>> GetAll()
         {
             try
             {
                 var adjList = await _adjService.ReadAllAsync();
-                var nounLList = await _nounService.ReadAllAsync();
-                return Ok(new DataDto(adjList, nounLList));
+                var nounList = await _nounService.ReadAllAsync();
+                DataDto data = new DataDto(adjList, nounList);
+                return Ok(data);
             }
             catch
             {

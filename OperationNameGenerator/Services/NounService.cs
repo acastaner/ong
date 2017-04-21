@@ -33,7 +33,7 @@ namespace OperationNameGenerator.Services
 
         public async Task<IList<Noun>> ReadAllAsync()
         {
-            IList<Noun> nounList = await _session.SelectAllFrom<Noun>().ToListAsync();
+            IList<Noun> nounList = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Value).Asc().ToListAsync();
             return nounList;
         }
 
@@ -47,8 +47,7 @@ namespace OperationNameGenerator.Services
             try
             {
                 int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
-                Random rnd = new Random();
-                int offset = rnd.Next(count);
+                int offset = HelperService.GetRandomNumber(0, count);
                 Noun noun = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Id).Limit(offset, 1).FirstOrDefaultAsync();
                 return noun;
             }

@@ -5,7 +5,7 @@ import * as views from "../views";
 export class DataController {
 
     getAll(params: {}) {
-        return helpers.fetchSingle<views.DataDto>("api/Data/", "GET", null);
+        return helpers.fetchSingle<views.DataDto>("api/data/getall", "GET", null);
     }
 }
 

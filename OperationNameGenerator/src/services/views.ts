@@ -7,7 +7,7 @@ export interface AdjectiveDto {
 }
 
 export interface NounDto {
-    id?: string;
+    id: string;
 
     value?: string;
 }

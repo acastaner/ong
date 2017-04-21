@@ -3,7 +3,7 @@
         <form data-bind="submit: save">
             <div class="form-group">
                 <label for="adjective">Add:</label>
-                <input type="text" class="form-control input-sm" id="adjective" data-bind="textInput: noun.value" placeholder="Witch, Ogre, Suit...">
+                <input type="text" class="form-control input-sm" id="adjective" data-bind="textInput: noun().value" placeholder="Witch, Ogre, Suit...">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>

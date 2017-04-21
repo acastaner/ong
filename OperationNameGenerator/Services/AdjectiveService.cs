@@ -33,7 +33,7 @@ namespace OperationNameGenerator.Services
 
         public async Task<IList<Adjective>> ReadAllAsync()
         {
-            IList<Adjective> adjList = await _session.SelectAllFrom<Adjective>().ToListAsync();
+            IList<Adjective> adjList = await _session.SelectAllFrom<Adjective>().OrderBy(x => x.Value).Asc().ToListAsync();
             return adjList;
         }
 

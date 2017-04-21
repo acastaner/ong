@@ -33,7 +33,7 @@ export class AdjectiveDto {
 export class NounDto {
     originalData: views.NounDto;
     changed: KnockoutComputed<boolean>;
-    id?: string;
+    id: string;
 
     value = ko.observable<string>();
 

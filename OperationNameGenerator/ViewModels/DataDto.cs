@@ -11,6 +11,8 @@ namespace OperationNameGenerator.ViewModels
 
         public DataDto(IList<Adjective> adjectiveList, IList<Noun> nounList)
         {
+            Adjectives = new List<AdjectiveDto>();
+            Nouns = new List<NounDto>();
             foreach(Adjective adj in adjectiveList)
             {
                 Adjectives.Add(adj.toAdjectiveDto());
