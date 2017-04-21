@@ -25,6 +25,12 @@ namespace OperationNameGenerator.Services
             await _session.DeleteAsync(noun);
         }
 
+        public async Task<bool> ExistsAsync(Noun noun)
+        {
+            Noun dbNoun = await _session.SelectAllFrom<Noun>().Where(x => x.Value == noun.Value).FirstOrDefaultAsync();
+            return (dbNoun == null ? false : true);
+        }
+
         public async Task<IList<Noun>> ReadAllAsync()
         {
             IList<Noun> nounList = await _session.SelectAllFrom<Noun>().ToListAsync();
