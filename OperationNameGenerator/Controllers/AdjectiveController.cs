@@ -44,12 +44,18 @@ namespace OperationNameGenerator.Controllers
         {
             try
             {
-                Adjective adj = new Adjective {
-                                    Value = adjDto.Value,
-                                    ModificationDate = DateTime.Now
-                                    };
-                adj = await _adjService.CreateAsync(adj);
-                return Ok(adj.toAdjectiveDto());
+                Adjective adj = new Adjective
+                {
+                    Value = adjDto.Value,
+                    ModificationDate = DateTime.Now
+                };
+                if (await _adjService.ExistsAsync(adj))
+                    return BadRequest<AdjectiveDto>("Entry already exists");
+                else
+                {
+                    adj = await _adjService.CreateAsync(adj);
+                    return Ok(adj.toAdjectiveDto());
+                }
             }
             catch
             {

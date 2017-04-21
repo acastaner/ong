@@ -25,6 +25,12 @@ namespace OperationNameGenerator.Services
             await _session.DeleteAsync(adj);
         }
 
+        public async Task<bool> ExistsAsync(Adjective adj)
+        {
+            Adjective dbAdj = await _session.SelectAllFrom<Adjective>().Where(x => x.Value == adj.Value).FirstOrDefaultAsync();
+            return (dbAdj == null ? false : true);
+        }
+
         public async Task<IList<Adjective>> ReadAllAsync()
         {
             IList<Adjective> adjList = await _session.SelectAllFrom<Adjective>().ToListAsync();

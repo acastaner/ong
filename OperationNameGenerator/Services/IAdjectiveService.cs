@@ -13,5 +13,6 @@ namespace OperationNameGenerator.Services
         Task<Adjective> ReadRandomAsync();
         Task<Adjective> UpdateAsync(Adjective adj);
         Task DeleteAsync(Adjective adj);
+        Task<bool> ExistsAsync(Adjective adj);
     }
 }
