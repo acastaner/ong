@@ -46,9 +46,9 @@ namespace OperationNameGenerator.Services
         {
             try
             {
-                int count = await _session.Select<Adjective>().CountAll().From().ScalarAsync<int>();
+                int count = await _session.Select<Noun>().CountAll().From().ScalarAsync<int>();
                 int offset = HelperService.GetRandomNumber(0, count);
-                Noun noun = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Id).Limit(offset, 1).FirstOrDefaultAsync();
+                Noun noun = await _session.SelectAllFrom<Noun>().OrderBy(x => x.Value).Limit(offset, 1).FirstOrDefaultAsync();
                 return noun;
             }
             catch(Exception ex)
