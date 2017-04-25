@@ -5,7 +5,7 @@ import * as views from "./views";
 export class NounController {
 
     get(params: {id: string}) {
-        return helpers.fetchSingle<views.NounDto>(`api/noun/${params.id}`, "GET", null);
+        return helpers.fetchSingle<views.NounReadDto>(`api/noun/${params.id}`, "GET", null);
     }
 
     post(params: {nounDto: views.NounDto}) {

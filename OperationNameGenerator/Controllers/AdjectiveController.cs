@@ -23,18 +23,18 @@ namespace OperationNameGenerator.Controllers
             _session = session;
             _adjService = adjService;
         }
-
+        [Route("")]
         [HttpGet("{id}")]
-        public async Task<IHttpActionResult<AdjectiveDto>> Get(Guid id)
+        public async Task<IHttpActionResult<AdjectiveReadDto>> Get(Guid id)
         {
             try
             {
                 Adjective adj = await _adjService.ReadAsync(id);
-                return Ok(adj.toAdjectiveDto());
+                return Ok(adj.ToAdjectiveReadDto());
             }
             catch
             {
-                return InternalServerError<AdjectiveDto>(new AdjectiveDto());
+                return InternalServerError<AdjectiveReadDto>(new AdjectiveReadDto());
             }
         }
         [Route("")]
@@ -54,7 +54,7 @@ namespace OperationNameGenerator.Controllers
                 else
                 {
                     adj = await _adjService.CreateAsync(adj);
-                    return Ok(adj.toAdjectiveDto());
+                    return Ok(adj.ToAdjectiveDto());
                 }
             }
             catch

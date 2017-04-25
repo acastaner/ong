@@ -24,16 +24,16 @@ namespace OperationNameGenerator.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IHttpActionResult<NounDto>> Get(Guid id)
+        public async Task<IHttpActionResult<NounReadDto>> Get(Guid id)
         {
             try
             {
                 Noun noun = await _nounService.ReadAsync(id);
-                return Ok(noun.toNounDto());
+                return Ok(noun.ToNounReadDto());
             }
             catch
             {
-                return InternalServerError<NounDto>(new NounDto());
+                return InternalServerError<NounReadDto>(new NounReadDto());
             }
         }
         [Route("")]
@@ -53,7 +53,7 @@ namespace OperationNameGenerator.Controllers
                 else
                 {
                     noun = await _nounService.CreateAsync(noun);
-                    return Ok(noun.toNounDto());
+                    return Ok(noun.ToNounDto());
                 }
             }
             catch

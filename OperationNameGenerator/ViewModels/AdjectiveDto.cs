@@ -7,4 +7,9 @@ namespace OperationNameGenerator.ViewModels
         public Guid Id {get;set;}
         public string Value { get; set; }
     }
+
+    public class AdjectiveReadDto
+    {
+        public string Value {get;set;}
+    }
 }

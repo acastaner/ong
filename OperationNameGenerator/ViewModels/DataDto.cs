@@ -6,20 +6,20 @@ namespace OperationNameGenerator.ViewModels
 {
     public class DataDto
     {
-        public IList<AdjectiveDto> Adjectives { get; set; }
-        public IList<NounDto> Nouns { get; set; }
+        public IList<AdjectiveReadDto> Adjectives { get; set; }
+        public IList<NounReadDto> Nouns { get; set; }
 
         public DataDto(IList<Adjective> adjectiveList, IList<Noun> nounList)
         {
-            Adjectives = new List<AdjectiveDto>();
-            Nouns = new List<NounDto>();
+            Adjectives = new List<AdjectiveReadDto>();
+            Nouns = new List<NounReadDto>();
             foreach(Adjective adj in adjectiveList)
             {
-                Adjectives.Add(adj.toAdjectiveDto());
+                Adjectives.Add(adj.ToAdjectiveReadDto());
             }
             foreach(Noun noun in nounList)
             {
-                Nouns.Add(noun.toNounDto());
+                Nouns.Add(noun.ToNounReadDto());
             }
         }
         public DataDto()

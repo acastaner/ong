@@ -43,7 +43,7 @@ namespace OperationNameGenerator.Controllers
                 return Ok<OpNameDto>(opNameDto);
                 
             }
-            catch(Exception ex)
+            catch
             {
                 return InternalServerError<OpNameDto>(new OpNameDto());
             }

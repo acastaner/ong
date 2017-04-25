@@ -1,21 +1,29 @@
 import * as enums from "./enums";
 
+export interface AdjectiveReadDto {
+    value?: string;
+}
+
 export interface AdjectiveDto {
     id: string;
 
     value?: string;
 }
 
-export interface NounDto {
-    id: string;
-
+export interface NounReadDto {
     value?: string;
 }
 
 export interface DataDto {
-    adjectives?: AdjectiveDto[];
+    adjectives?: AdjectiveReadDto[];
 
-    nouns?: NounDto[];
+    nouns?: NounReadDto[];
+}
+
+export interface NounDto {
+    id: string;
+
+    value?: string;
 }
 
 export interface OpNameDto {

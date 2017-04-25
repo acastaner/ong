@@ -4,8 +4,8 @@ import * as views from "./views";
 
 export class AdjectiveController {
 
-    get(params: {id: string}) {
-        return helpers.fetchSingle<views.AdjectiveDto>(`api/adjective/${params.id}`, "GET", null);
+    get(params: {id?: string}) {
+        return helpers.fetchSingle<views.AdjectiveReadDto>("api/adjective/" + helpers.getQueryString({ id: params.id }), "GET", null);
     }
 
     post(params: {adjDto: views.AdjectiveDto}) {
