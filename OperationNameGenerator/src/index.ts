@@ -11,6 +11,7 @@ import { AdjectivesViewModel } from './components/admin/adjectives';
 import { AdjectiveAddViewModel } from './components/admin/adjective-add';
 import { NounsViewModel } from './components/admin/nouns';
 import { NounAddViewModel } from './components/admin/noun-add';
+import { ImportViewModel } from './components/admin/import';
 
 declare function require(name: string): string;
 require('./index.less');
@@ -37,6 +38,7 @@ ko.components.register('adjectives', { viewModel: AdjectivesViewModel, template:
 ko.components.register('adjective-add', { viewModel: AdjectiveAddViewModel, template: require('./components/admin/adjective-add.html') });
 ko.components.register('nouns', { viewModel: NounsViewModel, template: require('./components/admin/nouns.html') });
 ko.components.register('noun-add', { viewModel: NounAddViewModel, template: require('./components/admin/noun-add.html') });
+ko.components.register('import', { viewModel: ImportViewModel, template: require('./components/admin/import.html') });
 
 folke.addRoute('', 'home');
 folke.addRoute('home', 'home');
