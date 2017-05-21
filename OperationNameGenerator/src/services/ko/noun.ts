@@ -6,7 +6,7 @@ import * as koViews from "./views";
 export class NounController {
 
     get(params: {id: string}) {
-        return helpers.fetchSingle<views.NounReadDto>(`api/noun/${params.id}`, "GET", null);
+        return helpers.fetchSingleT<views.NounReadDto, koViews.NounReadDto>(`api/noun/${params.id}`, "GET", view => new koViews.NounReadDto(view), null);
     }
 
     post(params: {nounDto: koViews.NounDto}) {

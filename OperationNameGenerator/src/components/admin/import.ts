@@ -3,7 +3,7 @@ export class ImportViewModel {
 
     }
 
-    import= () =>
+    import = () =>
     {
         // TODO
     }

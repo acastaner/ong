@@ -6,7 +6,7 @@ import * as koViews from "./views";
 export class AdjectiveController {
 
     get(params: {id?: string}) {
-        return helpers.fetchSingle<views.AdjectiveReadDto>("api/adjective/" + helpers.getQueryString({ id: params.id }), "GET", null);
+        return helpers.fetchSingleT<views.AdjectiveReadDto, koViews.AdjectiveReadDto>("api/adjective/" + helpers.getQueryString({ id: params.id }), "GET", view => new koViews.AdjectiveReadDto(view), null);
     }
 
     post(params: {adjDto: koViews.AdjectiveDto}) {

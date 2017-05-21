@@ -4,6 +4,28 @@ import * as validation from "folke-ko-validation";
 import { loading } from "folke-ko-service-helpers";
 
 
+export class AdjectiveReadDto {
+    originalData: views.AdjectiveReadDto;
+    changed: KnockoutComputed<boolean>;
+    value = ko.observable<string>();
+
+    constructor(data: views.AdjectiveReadDto) {
+        this.load(data);
+        this.originalData = data;
+        this.changed = ko.pureComputed(() =>
+            this.value() !== this.originalData.value
+        );
+    }
+    public toJs() {
+        return {
+            value: this.value(),
+        };
+    }
+    public load(data: views.AdjectiveReadDto) {
+        this.value(data.value);
+    }
+}
+
 export class AdjectiveDto {
     originalData: views.AdjectiveDto;
     changed: KnockoutComputed<boolean>;
@@ -27,6 +49,55 @@ export class AdjectiveDto {
     public load(data: views.AdjectiveDto) {
         this.id = data.id;
         this.value(data.value);
+    }
+}
+
+export class NounReadDto {
+    originalData: views.NounReadDto;
+    changed: KnockoutComputed<boolean>;
+    value = ko.observable<string>();
+
+    constructor(data: views.NounReadDto) {
+        this.load(data);
+        this.originalData = data;
+        this.changed = ko.pureComputed(() =>
+            this.value() !== this.originalData.value
+        );
+    }
+    public toJs() {
+        return {
+            value: this.value(),
+        };
+    }
+    public load(data: views.NounReadDto) {
+        this.value(data.value);
+    }
+}
+
+export class DataDto {
+    originalData: views.DataDto;
+    changed: KnockoutComputed<boolean>;
+    adjectives = ko.observableArray<AdjectiveReadDto>();
+
+    nouns = ko.observableArray<NounReadDto>();
+
+    constructor(data: views.DataDto) {
+        this.load(data);
+        this.originalData = data;
+        this.changed = ko.pureComputed(() =>
+            this.adjectives() != undefined && (this.adjectives().length !== this.originalData.adjectives.length || this.adjectives().some(x => x.changed()))
+            || this.nouns() != undefined && (this.nouns().length !== this.originalData.nouns.length || this.nouns().some(x => x.changed()))
+        );
+    }
+    public toJs() {
+        return {
+            adjectives: this.adjectives() ? this.adjectives().map(x => x.toJs()): null,
+            nouns: this.nouns() ? this.nouns().map(x => x.toJs()): null,
+        };
+    }
+    public load(data: views.DataDto) {
+        this.adjectives(data.adjectives ? data.adjectives.map(x => new AdjectiveReadDto(x)) : null);
+        this.nouns(data.nouns ? data.nouns.map(x => new NounReadDto(x)) : null);
     }
 }
 
