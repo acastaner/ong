@@ -10,6 +10,10 @@ export interface AdjectiveDto {
     value?: string;
 }
 
+export interface AdjectiveListDto {
+    adjectives?: AdjectiveDto[];
+}
+
 export interface NounReadDto {
     value?: string;
 }

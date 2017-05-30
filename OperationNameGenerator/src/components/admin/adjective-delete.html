@@ -1,0 +1,10 @@
+<div class="row" data-bind="with: adjectiveList">
+    <span>Delete</span>
+    <table class="table" data-bind="foreach: adjectives">
+        <tr>
+            <td>1</td>
+            <td data-bind="text: value">Zobi</td>
+            <td><button type="button" class="btn btn-danger btn-mini" data-bind="click: delete">Delete</a></td>
+        </tr>
+    </table>
+</div>

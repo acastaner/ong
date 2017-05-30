@@ -8,6 +8,7 @@ using OperationNameGenerator.ViewModels;
 using OperationNameGenerator.BusinessModels;
 using OperationNameGenerator.Mappings;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace OperationNameGenerator.Controllers
 {
@@ -37,6 +38,26 @@ namespace OperationNameGenerator.Controllers
                 return InternalServerError<AdjectiveReadDto>(new AdjectiveReadDto());
             }
         }
+
+        [Route("getall")]
+        [Authorize]
+        [HttpGet]
+        public async Task<IHttpActionResult<AdjectiveListDto>> GetAll()
+        {
+            try 
+            {
+                AdjectiveListDto adjectiveDtos = new AdjectiveListDto();
+                IList<Adjective> adjectives = await _adjService.ReadAllAsync();
+                foreach(Adjective adj in adjectives)
+                    adjectiveDtos.Adjectives.Add(adj.ToAdjectiveDto());
+                return Ok(adjectiveDtos);
+            }
+            catch
+            {
+                return InternalServerError<AdjectiveListDto>(new AdjectiveListDto());
+            }
+        }
+
         [Route("")]
         [Authorize]
         [HttpPost]
@@ -64,6 +85,7 @@ namespace OperationNameGenerator.Controllers
         }
         [Authorize]
         [HttpDelete]
+        [Route("")]
         public async Task<IHttpActionResult<AdjectiveDto>> Delete(Guid id)
         {
             try
