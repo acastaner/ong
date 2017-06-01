@@ -4,6 +4,9 @@ using Folke.Mvc.Extensions;
 using Folke.Elm;
 using OperationNameGenerator.Services;
 using OperationNameGenerator.ViewModels;
+using OperationNameGenerator.BusinessModels;
+using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace OperationNameGenerator.Controllers
 {
@@ -35,6 +38,35 @@ namespace OperationNameGenerator.Controllers
             catch
             {
                 return InternalServerError<DataDto>(new DataDto());
+            }
+        }
+        [Route("import")]
+        [HttpPost]
+        [Authorize]
+        public async Task<IHttpActionResult<string>> Import([FromBody] DataDto data)
+        {
+            try
+            {
+                int importedAdj = 0;
+                int importedNoun = 0;
+                foreach(AdjectiveReadDto adjDto in data.Adjectives)
+                {
+                    Adjective adj = new Adjective{ Value = adjDto.Value, CreationDate = DateTime.Now, ModificationDate = DateTime.Now };
+                    await _adjService.CreateAsync(adj);
+                    importedAdj++;
+                }
+
+                foreach(NounReadDto nounDto in data.Nouns)
+                {
+                    Noun noun = new Noun { Value = nounDto.Value, CreationDate = DateTime.Now, ModificationDate = DateTime.Now };
+                    await _nounService.CreateAsync(noun);
+                    importedNoun++;
+                }
+                return Ok<string>("Imported " + importedAdj + " adjective(s) and " + importedNoun + " noun(s).");
+            }
+            catch
+            {
+                return InternalServerError<string>("Could not import.");
             }
         }
     }

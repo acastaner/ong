@@ -7,5 +7,9 @@ export class DataController {
     getAll(params: {}) {
         return helpers.fetchSingle<views.DataDto>("api/data/getall", "GET", null);
     }
+
+    import(params: {data: views.DataDto}) {
+        return helpers.fetchSingle<string>("api/data/import", "POST", JSON.stringify(params.data));
+    }
 }
 
