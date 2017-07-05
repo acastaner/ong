@@ -15,6 +15,7 @@ using Folke.CsTsService;
 using OperationNameGenerator.BusinessModels;
 using System.Reflection;
 using OperationNameGenerator.Services;
+using Folke.Identity.Server;
 
 namespace OperationNameGenerator
 {
@@ -25,7 +26,7 @@ namespace OperationNameGenerator
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.Local.json", optional: true)
+                .AddJsonFile("appsettings.Local.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -38,9 +39,13 @@ namespace OperationNameGenerator
             services.AddOperationNameGeneratorServices();
 
             services.AddSingleton<IConfiguration>(provider => Configuration);
+
+            // Set all Folke framework options here through Folke.Core
             services.AddFolkeCore<MySqlDriver>(options =>
             {
-                options.ConnectionString = Configuration["Data:ConnectionString"];
+                options.Elm = elmOptions => elmOptions.ConnectionString = Configuration["Data:ConnectionString"];
+                options.IdentityServer = identityServerOptions => identityServerOptions.RegistrationEnabled = bool.Parse(Configuration["Data:EnableRegistration"]);
+                options.Identity = identityOptions => identityOptions.Password.RequiredLength = 8;
             });
 
             // Add framework services.
@@ -52,13 +57,15 @@ namespace OperationNameGenerator
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IFolkeConnection connection,
        RoleManager<Role> roleManager, UserManager<User> userManager, ApplicationPartManager applicationPartManager)
         {
-            app.UseFolkeCore(connection, env, roleManager, userManager, applicationPartManager, options =>
-            {
-                options.AdministratorEmail = Configuration["Data:DefaultAdministratorUserName"];
-                options.AdministratorPassword = Configuration["Data:DefaultAdministratorPassword"];
-            });
+            // Default admin credentials must be specified here because they interact with ASP.NET Identity
+            app.UseFolkeCore(connection, env, roleManager, userManager, applicationPartManager, 
+                options =>
+                {
+                    options.AdministratorEmail = Configuration["Data:DefaultAdministratorUserName"];
+                    options.AdministratorPassword = Configuration["Data:DefaultAdministratorPassword"];
+                });
 
-            // Tells ORM to update Schema
+            // Elm updates database schema
             connection.UpdateSchema(typeof(Adjective).GetTypeInfo().Assembly);
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

@@ -19,8 +19,7 @@ namespace OperationNameGenerator
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
-                .UseStartup<Startup>()
-                
+                .UseStartup<Startup>()                
                 .UseUrls("http://0.0.0.0:" + config["Data:ListeningPort"])
                 .Build();
 
