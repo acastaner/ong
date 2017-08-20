@@ -45,7 +45,6 @@ namespace OperationNameGenerator
             {
                 options.Elm = elmOptions => elmOptions.ConnectionString = Configuration["Data:ConnectionString"];
                 options.IdentityServer = identityServerOptions => identityServerOptions.RegistrationEnabled = bool.Parse(Configuration["Data:EnableRegistration"]);
-                options.Identity = identityOptions => identityOptions.Password.RequiredLength = 8;
             });
 
             // Add framework services.

@@ -35,6 +35,10 @@ namespace OperationNameGenerator.Controllers
             {
                 Adjective adj = await _adjService.ReadRandomAsync();
                 Noun noun = await _nounService.ReadRandomAsync();
+
+                if(adj == null || noun == null)
+                    return Ok<OpNameDto>(new OpNameDto());
+                
                 OpNameDto opNameDto = new OpNameDto
                                                 {
                                                     Adjective = adj.Value,
