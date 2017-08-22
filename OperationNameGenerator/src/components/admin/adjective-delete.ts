@@ -1,6 +1,7 @@
 import * as ko from 'knockout';
 import * as services from './../../services/ko/services';
-import { AdjectiveListDto, AdjectiveDto } from './../../services/ko/views';
+import { AdjectiveDto } from './../../services/ko/views';
+import { AdjectiveListDto } from './../../services/views';
 
 export class AdjectiveDeleteViewModel {
     adjectiveList = ko.observable<AdjectiveListDto>();
